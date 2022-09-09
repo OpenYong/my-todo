@@ -2,5 +2,6 @@
   list-style: none;
   margin: 2rem auto;
   padding: 0;
-  border: 1px solid red;
+  height: 36.5rem;
+  max-height: 36.5rem;
 }
