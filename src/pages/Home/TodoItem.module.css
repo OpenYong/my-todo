@@ -1,7 +1,67 @@
 .item {
+  display: flex;
+  align-items: center;
   margin: 0.5rem 0;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   background-color: #fff;
   border-radius: 5px;
+}
+
+.btn-delete {
+  border: 0;
+  /* display: none; */
+  opacity: 0;
+  background-color: transparent;
+  color: #eb1d36;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 300ms ease-in;
+}
+
+.item:hover > .btn-delete {
+  display: block;
+  opacity: 1;
+}
+
+.checkbox {
+  opacity: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  margin: 0;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  font-size: 1rem;
+}
+
+.item label {
+  display: flex;
+}
+
+.item label::before {
+  content: "";
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0.1em solid #7f8487;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.checkbox:hover + label::before {
+  background-color: #a8a8a8;
+}
+
+.checkbox:checked + label::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: "\f00c";
+  font: var(--fa-font-solid);
+  background-color: #7f8487;
+  color: white;
 }

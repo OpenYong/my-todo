@@ -23,12 +23,22 @@ const Home = () => {
     newTodos[itemIndex].text = text;
   };
 
+  const deleteTodoHandler = (id: string) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.id !== id);
+    });
+  };
+
   console.log(todos);
 
   return (
     <div className={classes.container}>
       <TitleHeader title="오늘 할 일" />
-      <TodoList items={todos} onUpdateTodo={updateTodoHandler} />
+      <TodoList
+        items={todos}
+        onUpdateTodo={updateTodoHandler}
+        onDeleteTodo={deleteTodoHandler}
+      />
       <TodoForm onAddTodo={addTodoHandler} />
     </div>
   );
