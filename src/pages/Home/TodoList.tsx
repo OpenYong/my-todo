@@ -8,6 +8,7 @@ const TodoList: React.FC<{
   items: Todo[];
   onUpdateTodo: (id: string, text: string) => void;
   onDeleteTodo: (id: string) => void;
+  onCompleteTodo: (id: string) => void;
 }> = (props) => {
   return (
     <ul className={classes.list}>
@@ -21,6 +22,7 @@ const TodoList: React.FC<{
             text={item.text}
             onUpdateTodo={props.onUpdateTodo}
             onDeleteTodo={props.onDeleteTodo.bind(null, item.id)}
+            onCompleteTodo={props.onCompleteTodo.bind(null, item.id)}
           />
         ))}
     </ul>

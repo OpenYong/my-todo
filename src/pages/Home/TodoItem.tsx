@@ -6,6 +6,7 @@ const TodoItem: React.FC<{
   text: string;
   onUpdateTodo: (id: string, text: string) => void;
   onDeleteTodo: () => void;
+  onCompleteTodo: () => void;
 }> = (props) => {
   const [todoText, setTodoText] = useState(props.text);
 
@@ -19,7 +20,11 @@ const TodoItem: React.FC<{
 
   return (
     <li className={classes.item}>
-      <input type="checkbox" className={classes.checkbox} />
+      <input
+        type="checkbox"
+        className={classes.checkbox}
+        onChange={props.onCompleteTodo}
+      />
       <label htmlFor={props.id}></label>
       <input
         id={props.id}

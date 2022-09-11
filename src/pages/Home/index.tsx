@@ -29,6 +29,11 @@ const Home = () => {
     });
   };
 
+  const doneHandler = (id: string) => {
+    const newTodos = todos;
+    const itemIndex = newTodos.findIndex((el) => el.id === id);
+    newTodos[itemIndex].isDone = !newTodos[itemIndex].isDone;
+  };
   console.log(todos);
 
   return (
@@ -38,6 +43,7 @@ const Home = () => {
         items={todos}
         onUpdateTodo={updateTodoHandler}
         onDeleteTodo={deleteTodoHandler}
+        onCompleteTodo={doneHandler}
       />
       <TodoForm onAddTodo={addTodoHandler} />
     </div>
