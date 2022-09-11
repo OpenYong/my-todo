@@ -11,16 +11,17 @@ const Home = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTodoHandler = (text: string) => {
+    const newTodo = new Todo(text);
     setTodos((prevTodos) => {
-      const newTodo = new Todo(text);
       return prevTodos.concat(newTodo);
     });
   };
 
   const updateTodoHandler = (id: string, text: string) => {
-    const newTodos = todos;
+    const newTodos = [...todos];
     const itemIndex = newTodos.findIndex((el) => el.id === id);
     newTodos[itemIndex].text = text;
+    setTodos(newTodos);
   };
 
   const deleteTodoHandler = (id: string) => {
@@ -30,17 +31,18 @@ const Home = () => {
   };
 
   const doneHandler = (id: string) => {
-    const newTodos = todos;
+    const newTodos = [...todos];
     const itemIndex = newTodos.findIndex((el) => el.id === id);
     newTodos[itemIndex].isDone = !newTodos[itemIndex].isDone;
+    setTodos(newTodos);
   };
-  console.log(todos);
 
   return (
     <div className={classes.container}>
       <TitleHeader title="오늘 할 일" />
       <TodoList
-        items={todos}
+        items={todos.filter((todo) => todo.isDone === false)}
+        doneTodos={todos.filter((todo) => todo.isDone === true)}
         onUpdateTodo={updateTodoHandler}
         onDeleteTodo={deleteTodoHandler}
         onCompleteTodo={doneHandler}

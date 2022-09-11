@@ -4,6 +4,7 @@ import classes from "./TodoItem.module.css";
 const TodoItem: React.FC<{
   id: string;
   text: string;
+  isDone: boolean;
   onUpdateTodo: (id: string, text: string) => void;
   onDeleteTodo: () => void;
   onCompleteTodo: () => void;
@@ -24,6 +25,7 @@ const TodoItem: React.FC<{
         type="checkbox"
         className={classes.checkbox}
         onChange={props.onCompleteTodo}
+        checked={props.isDone}
       />
       <label htmlFor={props.id}></label>
       <input
