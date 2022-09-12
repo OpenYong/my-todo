@@ -12,11 +12,14 @@ const TodoItem: React.FC<{
   const [todoText, setTodoText] = useState(props.text);
 
   const todoChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    setTodoText(e.currentTarget.value);
+    setTodoText(e.currentTarget.value.trim());
+    props.onUpdateTodo(props.id, e.currentTarget.value.trim());
   };
 
   const onBlurHandler = () => {
-    props.onUpdateTodo(props.id, todoText);
+    if (todoText.trim() === "") {
+      props.onDeleteTodo();
+    }
   };
 
   return (
@@ -43,4 +46,4 @@ const TodoItem: React.FC<{
   );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);

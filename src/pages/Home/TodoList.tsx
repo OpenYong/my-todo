@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import TodoItem from "./TodoItem";
 
 import classes from "./TodoList.module.css";
@@ -6,18 +6,25 @@ import Todo from "../../models/todo";
 
 const TodoList: React.FC<{
   items: Todo[];
-  doneTodos: Todo[];
   onUpdateTodo: (id: string, text: string) => void;
   onDeleteTodo: (id: string) => void;
   onCompleteTodo: (id: string) => void;
 }> = (props) => {
-  console.log(props.items);
-  console.log(!!props.doneTodos.length);
+  const { items } = props;
+
+  const ongoingTodos = useMemo(() => {
+    return props.items.filter((item) => item.isDone === false);
+  }, [items]);
+
+  const doneTodos = useMemo(() => {
+    return props.items.filter((item) => item.isDone === true);
+  }, [items]);
+
   return (
     <div className={classes.container}>
       <ul className={classes.list}>
         {!!props.items.length &&
-          props.items
+          ongoingTodos
             .slice(0)
             .reverse()
             .map((item) => (
@@ -32,11 +39,11 @@ const TodoList: React.FC<{
               />
             ))}
       </ul>
-      {!!props.doneTodos.length && (
+      {!!doneTodos.length && (
         <div>
-          <h3> 완료됨 </h3>
+          <h3 className={classes["header-done"]}>완료됨</h3>
           <ul>
-            {props.doneTodos
+            {doneTodos
               .slice(0)
               .reverse()
               .map((item) => (
@@ -57,4 +64,4 @@ const TodoList: React.FC<{
   );
 };
 
-export default TodoList;
+export default React.memo(TodoList);
