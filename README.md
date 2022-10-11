@@ -5,8 +5,8 @@
 <img src="https://user-images.githubusercontent.com/61618536/195009086-362da0b9-5e44-4e62-ae39-cd591f791522.png" width="400" alt="my-todo1">
 
 ## 보러가기
-반응형 미적용
-https://my-todo-a17ec.web.app/
+<a href="https://my-todo-a17ec.web.app/" target=”_blank”>앱 사용해보기</a>
+
 
 ## 개요 
 
